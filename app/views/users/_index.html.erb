@@ -1,5 +1,5 @@
 <div class="col-md-8 offset-md-1">
- <table class="table">
+  <table class="table">
    <thead>
     <tr>
      <th>image</th>
@@ -9,14 +9,15 @@
   </thead>
   
   <tbody>
-    <% users.each do |user| %>
+    <% @users.each do |user| %>
       <tr>
         <td><%= image_tag user.get_profile_image, size:'50x50' %></td>
         <td><%= user.name %></td>
         <td><%= link_to 'Show', user %></td>
+       <% end %>
       </tr>
-    <% end %>
-  </tbody>
+   </tbody>
+   </table>
  </div>
 </div>
 </div>
