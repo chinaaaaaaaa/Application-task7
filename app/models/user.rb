@@ -6,11 +6,16 @@ class User < ApplicationRecord
   
   has_one_attached :profile_image
   has_many :books, dependent: :destroy
+  has_many :book_comments,dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :favorited_books, through: :favorites, source: :book
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: { maximum: 50 }
   
+  def already_favorited?(book)
+    self.favorites.exists?(book_id: book.id)
+  end
   
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
