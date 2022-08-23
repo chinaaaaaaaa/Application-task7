@@ -1,24 +1,6 @@
-<h1>Followings Users</h1>
- <div class="col-md-8 offset-md-1">
-  <table class="table">
-   <thead>
-    <tr>
-     <th>image</th>
-     <th>name</th>
-     <th colspan="3"></th>
-     <th colspan="3"></th>
-     <th colspan="3"></th>
-    </tr>
-  </thead>
-  
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= image_tag user.get_profile_image, size:'50x50' %></td>
-        <td><%= user.name %></td>
-        <td><%= render 'relationships/follow', users: @users  %></td>
-        <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
-       <% end %>
-      </tr>
-   </tbody>
-  </table>
+<h2>Follow Users</h2>
+<% if @users.exists? %>
+  <%= render '/users/index', users: @users %>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>
