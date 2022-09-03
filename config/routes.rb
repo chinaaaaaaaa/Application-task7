@@ -17,6 +17,5 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
    get '/search', to: 'searches#search'
    
-   post 'favorite/:id' => 'favorites#create', as: 'create_favorite'
-   delete 'favorite/:id' => 'favorites#destroy', as: 'destroy_favorite'
+   
 end
