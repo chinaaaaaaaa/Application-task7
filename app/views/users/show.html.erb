@@ -4,7 +4,7 @@
       <h2>User info</h2>
       <%= render 'info', user: @user %>
 
-      <% unless @user.id == current_user.id %>
+       <% unless @user.id == current_user.id %>
        <% if (current_user.followed_by? @user) && (@user.followed_by? current_user) %>
        <% if @isRoom == true %>
         <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">チャットへ</a></p>
