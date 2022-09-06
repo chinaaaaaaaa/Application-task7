@@ -5,16 +5,16 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @book_new = Book.new
     @book_comment = BookComment.new
-    @book_detail = Book.find(params[:id])
-    unless ViewCount.find_by(user_id: current_user.id, book_id: @book_detail.id)
-      current_user.view_counts.create(book_id: @book_detail.id)
+    @book = Book.find(params[:id])
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @book.id)
+      current_user.view_counts.create(book_id: @book.id)
     end
   end
 
   def index
     to = Time.current.at_end_of_day
     from = (to - 6.day).at_beginning_of_day
-    @books = Book.all.sort{|a,b| 
+    @books = Book.all.sort{|a,b|
       b.favorites.where(created_at: from...to).size <=>
       a.favorites.where(created_at: from...to).size
      }
@@ -58,7 +58,7 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :body)
   end
-  
+
   def ensure_correct_user
     @book = Book.find(params[:id])
     unless @book.user == current_user
